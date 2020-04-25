@@ -1,0 +1,2 @@
+include ':app', ':basic', ':audioplayer', ':modlea', ':modleb', ':floatview', ':modlea:modelinterface',':modleb:modelinterface' ,':audioplayer:modelinterface',':floatview:modelinterface'
+rootProject.name='ModlePlugin'
