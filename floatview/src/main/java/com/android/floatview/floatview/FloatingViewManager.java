@@ -72,7 +72,7 @@ public class FloatingViewManager implements IFloatingView {
             if (mFloatingView != null) {
                 return;
             }
-            PFloatingView pFloatingView = new PFloatingView(getContainer().getContext(), mLayoutId);
+            PFloatingView pFloatingView = new PFloatingView(getContainer().getContext());
             mFloatingView = pFloatingView;
             pFloatingView.setLayoutParams(mLayoutParams);
             pFloatingView.setIconImage(mIconRes);
