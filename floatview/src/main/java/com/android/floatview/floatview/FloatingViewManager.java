@@ -19,13 +19,13 @@ import androidx.core.view.ViewCompat;
 
 public class FloatingViewManager implements IFloatingView {
 
-    private BaseFloatingView mFloatingView;
+    private BaseFloatingView mFloatingView;//悬浮view
     private static volatile FloatingViewManager mInstance;
-    private WeakReference<FrameLayout> mContainer;
+    private WeakReference<FrameLayout> mContainer;//rootview
     @LayoutRes
-    private int mLayoutId = R.layout.float_layout;
+    private int mLayoutId = R.layout.float_layout;//悬浮view的布局
     @DrawableRes
-    private int mIconRes = R.drawable.ic_launcher;
+    private int mIconRes = R.drawable.ic_launcher;//悬浮icon
     private ViewGroup.LayoutParams mLayoutParams = getParams();
     private Handler handler=new Handler(Looper.getMainLooper());
 
@@ -43,6 +43,10 @@ public class FloatingViewManager implements IFloatingView {
         return mInstance;
     }
 
+    /**
+     * 移除悬浮view
+     * @return
+     */
     @Override
     public FloatingViewManager remove() {
         handler.post(new Runnable() {
@@ -60,6 +64,9 @@ public class FloatingViewManager implements IFloatingView {
         return this;
     }
 
+    /**
+     * 确保悬浮view
+     */
     private void ensureFloatingView() {
         synchronized (this) {
             if (mFloatingView != null) {
@@ -79,6 +86,11 @@ public class FloatingViewManager implements IFloatingView {
         return this;
     }
 
+    /**
+     * 显示悬浮view
+     * @param activity
+     * @return
+     */
     @Override
     public FloatingViewManager attach(Activity activity) {
         attach(getRootView(activity));
@@ -109,6 +121,11 @@ public class FloatingViewManager implements IFloatingView {
         return this;
     }
 
+    /**
+     * 移除view
+     * @param container
+     * @return
+     */
     @Override
     public FloatingViewManager detach(FrameLayout container) {
         if (mFloatingView != null && container != null && ViewCompat.isAttachedToWindow(mFloatingView)) {
@@ -152,6 +169,10 @@ public class FloatingViewManager implements IFloatingView {
         return this;
     }
 
+    /**
+     * 将view添加到rootview
+     * @param view
+     */
     private void addViewToWindow(final View view) {
         if (getContainer() == null) {
             return;
