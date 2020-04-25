@@ -8,20 +8,21 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
+/**
+ * 自定义悬浮view
+ */
 public class BaseFloatingView extends FrameLayout {
 
-    public static final int MARGIN_EDGE = 20;
-    private float mOriginalRawX;
-    private float mOriginalRawY;
-    private float mOriginalX;
-    private float mOriginalY;
-    private static final int TOUCH_TIME_THRESHOLD = 150;
-    private long mLastTouchDownTime;
+    public static final int MARGIN_EDGE = 20;//边距
+    private float mOriginalRawX;//上次view X坐标
+    private float mOriginalRawY;//上次view Y坐标
+    private float mOriginalX;//当前view X坐标
+    private float mOriginalY;//当前view Y坐标
     protected MoveAnimator mMoveAnimator;
-    protected int mScreenWidth;
-    private int mScreenHeight;
-    private int mStatusBarHeight;
-    private boolean isNearestLeft = false;
+    protected int mScreenWidth;//屏幕狂赌
+    private int mScreenHeight;//屏幕高度
+    private int mStatusBarHeight;//状态栏高度
+    private boolean isNearestLeft = false;//
 
     public BaseFloatingView(Context context) {
         this(context, null);
@@ -64,10 +65,6 @@ public class BaseFloatingView extends FrameLayout {
         return true;
     }
 
-    protected boolean isOnClickEvent() {
-        return System.currentTimeMillis() - mLastTouchDownTime < TOUCH_TIME_THRESHOLD;
-    }
-
     private void updateViewPosition(MotionEvent event) {
         setX(mOriginalX + event.getRawX() - mOriginalRawX);
         // 限制不可超出屏幕高度
@@ -86,7 +83,6 @@ public class BaseFloatingView extends FrameLayout {
         mOriginalY = getY();
         mOriginalRawX = event.getRawX();
         mOriginalRawY = event.getRawY();
-        mLastTouchDownTime = System.currentTimeMillis();
     }
 
     protected void updateSize() {
