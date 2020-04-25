@@ -5,10 +5,14 @@ import android.app.Application;
 import com.android.basic.base.BaseContext;
 import com.android.basic.base.IModuleManager;
 import com.android.basic.base.ModleManager;
+import com.android.floatview.floatview.modle.IModleFloatPluginImpl;
+import com.android.modlea.modle.IModleAPluginImpl;
+import com.android.modleb.modle.IModleBPluginImpl;
 import com.android.modleinterface.IAudioPlayerPlugin;
 import com.android.modleinterface.IModleAPlugin;
 import com.android.modleinterface.IModleBPlugin;
 import com.android.modleinterface.IModleFloatPlugin;
+import com.pingan.audioplayer.modle.IAudioPlayerPluginImpl;
 
 public class MyApplication extends Application {
     public static int index=0;
@@ -29,10 +33,10 @@ public class MyApplication extends Application {
             BaseContext.baseOn(new ModleManager(),application);
             IModuleManager moduleManager = BaseContext.getInstance().getModuleManager();
             if(moduleManager!=null) {
-                moduleManager.registerModule(IAudioPlayerPlugin.TAG, IAudioPlayerPlugin.class);
-                moduleManager.registerModule(IModleAPlugin.TAG, IModleAPlugin.class);
-                moduleManager.registerModule(IModleBPlugin.TAG, IModleBPlugin.class);
-                moduleManager.registerModule(IModleFloatPlugin.TAG, IModleFloatPlugin.class);
+                moduleManager.registerModule(IAudioPlayerPlugin.TAG, IAudioPlayerPluginImpl.class);
+                moduleManager.registerModule(IModleAPlugin.TAG, IModleAPluginImpl.class);
+                moduleManager.registerModule(IModleBPlugin.TAG, IModleBPluginImpl.class);
+                moduleManager.registerModule(IModleFloatPlugin.TAG, IModleFloatPluginImpl.class);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -30,6 +30,10 @@ dependencies {
     implementation project(path: ':modlea:modelinterface')
     implementation project(path: ':modleb:modelinterface')
     implementation project(path: ':floatview:modelinterface')
+    implementation project(path: ':modlea')
+    implementation project(path: ':audioplayer')
+    implementation project(path: ':floatview')
+    implementation project(path: ':modleb')
 
 
 }
